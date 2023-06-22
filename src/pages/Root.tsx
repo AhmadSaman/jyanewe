@@ -1,5 +1,7 @@
+import { Box } from "@chakra-ui/react";
+
 const Root = () => {
-  return <div>Root</div>;
+  return <Box backgroundColor={"tango"}>clsmcskcm</Box>;
 };
 
 export default Root;
