@@ -4,8 +4,8 @@
   margin: 0;
 }
 
-body,
-#root {
-  height: 100dvh;
-  width: 100dvw;
+#root,
+html {
+  height: 100%;
+  width: 100%;
 }
