@@ -18,7 +18,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { useAuth } from "../context/userContext";
 import logo from "../assets/logo.png";
 
@@ -47,12 +47,16 @@ const NavLink = ({ children }: { children: ReactNode }) => (
 );
 
 export default function Nav() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  if (!user) {
+    return <Navigate to={"/"} />;
+  }
   return (
     <>
       <Box
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         bg={useColorModeValue("green.100", "green.900")}
         px={4}
         boxShadow={"sm"}
@@ -95,7 +99,13 @@ export default function Nav() {
               <MenuList>
                 <MenuItem>My Events</MenuItem>
                 <MenuDivider />
-                <MenuItem>Logout</MenuItem>
+                <MenuItem
+                  onClick={async () => {
+                    signOut();
+                  }}
+                >
+                  Logout
+                </MenuItem>
               </MenuList>
             </Menu>
           </Flex>

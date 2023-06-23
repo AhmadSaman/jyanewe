@@ -96,11 +96,11 @@ export default function CallToActionWithAnnotation() {
                 _hover={{
                   bg: "green.500",
                 }}
-                padding={2}
+                padding={"2 5"}
                 type="button"
                 onClick={handleSignIn}
               >
-                <AiOutlineGoogle size={30} /> Join
+                <AiOutlineGoogle size={20} /> Join
               </Button>
             </Flex>
             <Box>
@@ -111,7 +111,7 @@ export default function CallToActionWithAnnotation() {
                 w={71}
                 position={"absolute"}
                 right={-71}
-                top={"10px"}
+                top={"20px"}
               />
               <Text
                 fontSize={"md"}
