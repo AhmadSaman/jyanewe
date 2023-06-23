@@ -1,5 +1,6 @@
 import { MdLocationPin } from "react-icons/md";
 import { IoIosPeople } from "react-icons/io";
+import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaCalendarDays } from "react-icons/fa6";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
@@ -17,15 +18,15 @@ import {
 } from "@chakra-ui/react";
 
 type EventCardProps = {
-  id: string;
-  type: string;
+  id: number | string;
+  type?: string;
   name: string;
   place: string;
-  category: string;
+  category?: string;
   participants: number;
   maxParticipants: number;
-  startDate: number;
-  sponsorLogo: string;
+  startDate: any;
+  sponsorLogo?: string;
 };
 
 export default function EventCard({
@@ -40,7 +41,7 @@ export default function EventCard({
   sponsorLogo,
 }: EventCardProps) {
   return (
-    <Center py={6}>
+    <Center py={6} height={"100%"}>
       <Link
         to={`/events/${type}/${id}`}
         style={{
@@ -49,8 +50,11 @@ export default function EventCard({
         }}
       >
         <Box
-          bg={useColorModeValue("white", "gray.900")}
-          boxShadow={"md"}
+          bg={useColorModeValue("green.100", "gray.900")}
+          _hover={{
+            boxShadow: "md",
+          }}
+          transition={"all 200ms ease-in-out"}
           rounded={"md"}
           p={6}
           overflow={"hidden"}
@@ -74,15 +78,17 @@ export default function EventCard({
                 {name}
               </Heading>
             </Box>
-            <Avatar src={sponsorLogo} />
+            <Avatar src={sponsorLogo || ""} />
           </Flex>
           <Stack mt={6} direction={"row"} spacing={4} align={"center"}>
-            <Flex gap="8px">
+            <Flex gap="8px" wrap="wrap">
               <Tag
                 size="md"
                 borderRadius="full"
                 paddingBlock={1}
                 paddingInline={2}
+                bg="green.300"
+                color={"white"}
               >
                 <MdLocationPin />
                 <TagLabel textTransform="capitalize" pl={"1.5"}>
@@ -94,6 +100,8 @@ export default function EventCard({
                 borderRadius="full"
                 paddingBlock={1}
                 paddingInline={2}
+                bg="green.300"
+                color={"white"}
               >
                 <IoIosPeople />
                 <TagLabel textTransform="capitalize" pl={"1.5"}>
@@ -105,10 +113,12 @@ export default function EventCard({
                 borderRadius="full"
                 paddingBlock={1}
                 paddingInline={2}
+                bg="green.300"
+                color={"white"}
               >
                 <FaCalendarDays />
                 <TagLabel textTransform="capitalize" pl={"1.5"}>
-                  {format(startDate, "dd/MM/yyyy")}
+                  {format(new Date(startDate), "dd/MM/yyyy")}
                 </TagLabel>
               </Tag>
               <Tag
@@ -116,8 +126,10 @@ export default function EventCard({
                 borderRadius="full"
                 paddingBlock={1}
                 paddingInline={2}
+                bg="green.300"
+                color={"white"}
               >
-                <FaCalendarDays />
+                <BiSolidCategoryAlt />
                 <TagLabel textTransform="capitalize" pl={"1.5"}>
                   {category}
                 </TagLabel>
