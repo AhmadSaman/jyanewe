@@ -26,13 +26,14 @@ export default function CallToActionWithAnnotation() {
 
   const handleSignIn = async () => {
     if (user) return navigate("/events");
-    const data = await signIn();
-    console.log(data);
+    await signIn();
   };
 
   const usercheck = useCallback(async () => {
     const { data } = await supabase.from("user").select("google_id");
-    if (user && !data?.includes(user.id)) {
+
+    const newData = data.map((d) => d.google_id);
+    if (user && !newData.includes(user?.id)) {
       await supabase.from("user").insert({
         google_id: user.id,
         user_meta_data: user.user_metadata,
@@ -43,10 +44,9 @@ export default function CallToActionWithAnnotation() {
 
   useEffect(() => {
     usercheck();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [usercheck]);
 
-  if (user) return <Navigate to="/events" />;
+  // if (user) return <Navigate to="/events" />;
   return (
     <>
       <Container maxW={"3xl"}>
