@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Root from "../pages/Root";
 import { AuthProvider } from "../context/userContext";
+import Nav from "../components/Nav";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,7 +19,10 @@ const router = createBrowserRouter(
       }
     >
       <Route index element={<Root />}></Route>
-      <Route path="events" element={<div>ssss</div>}></Route>
+
+      <Route element={<Nav />}>
+        <Route path="events" element={<div>svsvnsk</div>}></Route>
+      </Route>
     </Route>
   )
 );
