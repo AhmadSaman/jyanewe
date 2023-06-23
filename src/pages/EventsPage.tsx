@@ -8,13 +8,6 @@ type EventsState = {
   count: number | null;
 };
 
-const MAP_CATEGORY_ID_TO_LABEL = {
-  1: "Build",
-  2: "Repair",
-  3: "Clean",
-  4: "Plant",
-};
-
 const EventsPage = () => {
   const [events, setEvents] = useState<EventsState>();
   const [loading, setLoading] = useState<boolean>(true);
@@ -23,9 +16,17 @@ const EventsPage = () => {
     const datafunc = async () => {
       try {
         setLoading(true);
-        const { count, data, status, error } = await supabase
-          .from("event")
-          .select("*");
+        const { count, data, status, error } = await supabase.from("event")
+          .select(`
+          id,
+          limit_of_attendance,
+          number_of_attendance,
+          name,
+          location,
+          event_start_date,
+          category_type (name),
+          event_type
+          `);
         if (status !== 200) throw error;
 
         setEvents({
@@ -64,20 +65,19 @@ const EventsPage = () => {
           name,
           location,
           event_start_date,
-          category_id,
+          category_type,
+          event_type,
         }) => (
           <EventCard
+            key={id}
             id={id}
             participants={number_of_attendance}
             maxParticipants={limit_of_attendance}
             place={location}
             name={name}
             startDate={event_start_date}
-            category={
-              MAP_CATEGORY_ID_TO_LABEL[
-                category_id as keyof typeof MAP_CATEGORY_ID_TO_LABEL
-              ]
-            }
+            category={category_type.name}
+            type={event_type}
           />
         )
       )}

@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Root from "../pages/Root";
 import EventsPage from "../pages/EventsPage";
+import EventDetail from "../pages/EventDetail";
 import { AuthProvider } from "../context/userContext";
 import Nav from "../components/Nav";
 const router = createBrowserRouter(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
 
       <Route element={<Nav />}>
         <Route path="events" element={<EventsPage />}></Route>
+        <Route path="events/:type/:id" element={<EventDetail />}></Route>
       </Route>
     </Route>
   )
