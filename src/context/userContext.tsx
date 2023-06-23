@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
@@ -6,7 +6,6 @@ import React, {
   useCallback,
 } from "react";
 import { supabase } from "../App";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext("Default Value");
 
@@ -20,7 +19,7 @@ export const AuthProvider = ({ children }: any) => {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    } = supabase.auth.onAuthStateChange((_, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });

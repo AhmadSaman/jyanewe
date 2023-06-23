@@ -106,6 +106,7 @@ export default function CallToActionWithAnnotation() {
             <Box>
               <Icon
                 as={Arrow}
+                // eslint-disable-next-line react-hooks/rules-of-hooks
                 color={useColorModeValue("gray.800", "gray.300")}
                 w={71}
                 position={"absolute"}
