@@ -21,6 +21,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Navigate, Outlet } from "react-router";
 import { useAuth } from "../context/userContext";
 import logo from "../assets/logo.png";
+import Footer from "./Footer";
 
 const Links = [
   "Events",
@@ -54,10 +55,10 @@ export default function Nav() {
     return <Navigate to={"/"} />;
   }
   return (
-    <>
+    <Flex direction={"column"} border={"solid 1px black"} minHeight={"100vh"}>
       <Box
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        bg={useColorModeValue("green.100", "green.900")}
+        bg={useColorModeValue("green.50", "green.900")}
         px={4}
         boxShadow={"sm"}
       >
@@ -122,9 +123,10 @@ export default function Nav() {
         ) : null}
       </Box>
 
-      <Box p={4}>
+      <Box p={4} height={"full"} flex={1}>
         <Outlet />
       </Box>
-    </>
+      <Footer />
+    </Flex>
   );
 }
