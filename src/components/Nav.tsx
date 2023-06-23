@@ -16,6 +16,7 @@ import {
   useColorModeValue,
   Stack,
   Image,
+  Center,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Navigate, Outlet } from "react-router";
@@ -24,15 +25,41 @@ import logo from "../assets/logo.png";
 import Footer from "./Footer";
 
 const Links = [
-  "Events",
-  "People",
-  "Companies",
-  "Archive",
-  "Accomplishments",
-  "About Us",
+  {
+    path: "/events",
+    text: "Events",
+  },
+  {
+    path: "/people",
+    text: "People",
+  },
+  {
+    path: "/companies",
+    text: "Companies",
+  },
+  {
+    path: "/archive",
+    text: "Archive",
+  },
+  {
+    path: "/accomplishments",
+    text: "Accomplishments",
+  },
+  {
+    path: "/aboutUs",
+    text: "About Us",
+  },
 ];
+// const Links = [
+//   "events",
+//   "People",
+//   "Companies",
+//   "Archive",
+//   "Accomplishments",
+//   "About Us",
+// ];
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+const NavLink = ({ children, path }: { path: string; children: ReactNode }) => (
   <Link
     px={2}
     py={1}
@@ -41,7 +68,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={"#"}
+    href={path}
   >
     {children}
   </Link>
@@ -81,8 +108,10 @@ export default function Nav() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Links.map(({ path, text }) => (
+                <NavLink key={path} path={path}>
+                  {text}
+                </NavLink>
               ))}
             </HStack>
           </HStack>
@@ -115,17 +144,19 @@ export default function Nav() {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Links.map(({ path, text }) => (
+                <NavLink key={path} path={path}>
+                  {text}
+                </NavLink>
               ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
 
-      <Box p={4} height={"full"} flex={1}>
+      <Center p={4} height={"full"} flex={1} alignContent={"center"}>
         <Outlet />
-      </Box>
+      </Center>
       <Footer />
     </Flex>
   );
