@@ -18,7 +18,6 @@ const MAP_CATEGORY_ID_TO_LABEL = {
 const EventsPage = () => {
   const [events, setEvents] = useState<EventsState>();
   const [loading, setLoading] = useState<boolean>(true);
-  console.log(events);
   useEffect(() => {
     const datafunc = async () => {
       try {

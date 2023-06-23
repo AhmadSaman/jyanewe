@@ -11,10 +11,13 @@ import {
   Image,
   Flex,
 } from "@chakra-ui/react";
+
 import logo from "../assets/logo.png";
 // import { AiOutlineGoogle } from "react-icons/ai";
 import { useAuth } from "../context/userContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+import { supabase } from "../App";
 
 export default function CallToActionWithAnnotation() {
   const { user, signIn } = useAuth();
@@ -23,8 +26,25 @@ export default function CallToActionWithAnnotation() {
 
   const handleSignIn = async () => {
     if (user) return navigate("/events");
-    await signIn();
+    const data = await signIn();
+    console.log(data);
   };
+
+  const usercheck = useCallback(async () => {
+    const { data } = await supabase.from("user").select("google_id");
+    if (user && !data?.includes(user.id)) {
+      await supabase.from("user").insert({
+        google_id: user.id,
+        user_meta_data: user.user_metadata,
+        role_id: 2,
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    usercheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (user) return <Navigate to="/events" />;
   return (
