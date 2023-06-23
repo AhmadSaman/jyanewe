@@ -5,9 +5,9 @@ import {
   Outlet,
 } from "react-router-dom";
 import Root from "../pages/Root";
+import EventsPage from "../pages/EventsPage";
 import { AuthProvider } from "../context/userContext";
 import Nav from "../components/Nav";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -21,7 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<Root />}></Route>
 
       <Route element={<Nav />}>
-        <Route path="events" element={<div>svsvnsk</div>}></Route>
+        <Route path="events" element={<EventsPage />}></Route>
       </Route>
     </Route>
   )
