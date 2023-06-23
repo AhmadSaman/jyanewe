@@ -13,8 +13,20 @@ import {
 } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import { AiOutlineGoogle } from "react-icons/ai";
+import { useAuth } from "../context/userContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function CallToActionWithAnnotation() {
+  const { user, signIn } = useAuth();
+
+  const navigate = useNavigate();
+
+  const handleSignIn = async () => {
+    if (user) return navigate("/events");
+    await signIn();
+  };
+
+  if (user) return <Navigate to="/events" />;
   return (
     <>
       <Container maxW={"3xl"}>
@@ -67,7 +79,14 @@ export default function CallToActionWithAnnotation() {
             position={"relative"}
           >
             <Flex gap={"2"}>
-              <Button colorScheme={"twitter"} rounded={"full"} px={4}>
+              <Button
+                onClick={() => {
+                  navigate("/events");
+                }}
+                colorScheme={"twitter"}
+                rounded={"full"}
+                px={4}
+              >
                 Browse
               </Button>
               <Button
@@ -78,6 +97,8 @@ export default function CallToActionWithAnnotation() {
                   bg: "green.500",
                 }}
                 padding={2}
+                type="button"
+                onClick={handleSignIn}
               >
                 <AiOutlineGoogle size={30} /> Join
               </Button>
