@@ -60,7 +60,7 @@ export default function CallToActionWithAnnotation() {
             </Flex>
             Join us <br />
             <Text as={"span"} color={"green.400"}>
-              enjoy and Help the environment
+              Enjoy and Help the Environment
             </Text>
           </Heading>
           <Text color={"gray.500"}>
@@ -79,7 +79,7 @@ export default function CallToActionWithAnnotation() {
             position={"relative"}
           >
             <Flex gap={"2"}>
-              <Button
+              {/* <Button
                 onClick={() => {
                   navigate("/events");
                 }}
@@ -87,8 +87,8 @@ export default function CallToActionWithAnnotation() {
                 rounded={"full"}
                 px={4}
               >
-                Browse
-              </Button>
+                About Us
+              </Button> */}
               <Button
                 colorScheme={"green"}
                 bg={"green.400"}
@@ -99,8 +99,9 @@ export default function CallToActionWithAnnotation() {
                 padding={"2 5"}
                 type="button"
                 onClick={handleSignIn}
+                height={"50px"}
               >
-                <AiOutlineGoogle size={20} /> Join
+                Join The Community
               </Button>
             </Flex>
             <Box>
