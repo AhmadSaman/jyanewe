@@ -14,19 +14,18 @@ import {
 import logo from "../assets/logo.png";
 // import { AiOutlineGoogle } from "react-icons/ai";
 import { useAuth } from "../context/userContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CallToActionWithAnnotation() {
-  const { user, signIn } = useAuth();
+  const { user } = useAuth();
 
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
     if (user) return navigate("/events");
-    await signIn();
+    navigate("/login");
   };
 
-  if (user) return <Navigate to="/events" />;
   return (
     <>
       <Container maxW={"3xl"}>
