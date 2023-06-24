@@ -1,9 +1,5 @@
 import { Auth } from "@supabase/auth-ui-react";
-import {
-  ThemeSupa,
-  ThemeMinimal,
-  ThemeVariables,
-} from "@supabase/auth-ui-shared";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "../App";
 import { useAuth } from "../context/userContext";
 import { Navigate } from "react-router";

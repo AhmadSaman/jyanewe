@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../App";
 import { Card, CardBody, CardFooter } from "@chakra-ui/card";
 import { Heading, Stack, Text } from "@chakra-ui/layout";

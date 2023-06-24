@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "../App";
 import { Card, CardBody, CardFooter } from "@chakra-ui/card";
-import { Image } from "@chakra-ui/image";
 import { Heading, Stack, Text } from "@chakra-ui/layout";
 import { Button } from "@chakra-ui/button";
 import { useNavigate } from "react-router";

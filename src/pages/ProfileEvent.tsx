@@ -1,12 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { supabase } from "../App";
-import { useAuth } from "../context/userContext";
 import { Stack } from "@chakra-ui/layout";
 
 const ProfileEvent = () => {
-  const [data, setData] = useState();
-  const { user } = useAuth();
-
   const getUserEvents = useCallback(async () => {
     const { data } = await supabase.from("user_per_event").select(
       `
